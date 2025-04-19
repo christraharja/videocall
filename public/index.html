@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebRTC Video Call</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="setup-screen">
+      <h1>Video Call App</h1>
+      <button id="startCall">Start New Meeting</button>
+      <div class="join-form">
+        <input type="text" id="roomId" placeholder="Enter Meeting ID" />
+        <button id="joinCall">Join Meeting</button>
+      </div>
+      <div id="generatedId" class="meeting-id-display hidden">
+        <span id="roomNumber"></span>
+        <button id="copyBtn" onclick="copyRoomId()">Copy ID</button>
+      </div>
+    </div>
+
+    <div class="call-screen hidden">
+      <div class="room-info">
+        <div class="meeting-id-display">
+          Meeting ID: <span id="activeRoomNumber"></span>
+          <button id="copyActiveBtn" onclick="copyRoomId()">Copy ID</button>
+        </div>
+      </div>
+      
+      <!-- Join requests container - only visible to host -->
+      <div id="joinRequests" class="join-requests-container"></div>
+      
+      <div class="video-container">
+        <video id="localVideo" autoplay muted></video>
+        <video id="remoteVideo" autoplay></video>
+      </div>
+      <div class="controls">
+        <button id="muteAudio">Mute Audio</button>
+        <button id="muteVideo">Mute Video</button>
+        <button id="endCall" onclick="window.location.reload()">End Call</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Add Socket.IO + PeerJS -->
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.3.1/dist/peerjs.min.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
